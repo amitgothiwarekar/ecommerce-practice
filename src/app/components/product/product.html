@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>Product Management</h1>
+
+  <div class="layout">
+    <!-- Form Section -->
+    <div class="card">
+      <h2>Add Product</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Name</label>
+          <input 
+            type="text" 
+            [(ngModel)]="newProduct.name" 
+            name="name" 
+            placeholder="e.g. Wireless Mouse" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Price ($)</label>
+          <input 
+            type="number" 
+            [(ngModel)]="newProduct.price" 
+            name="price" 
+            placeholder="0.00" 
+            required>
+        </div>
+
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+
+    <!-- Product Table Section -->
+    <div class="card">
+      <h2>Product Catalog</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+       <tbody>
+  <tr *ngFor="let p of products">
+    <td>#{{ p.id }}</td>
+    <td><strong>{{ p.name }}</strong></td>
+    <td>${{ p.price }}</td>
+  </tr>
+  <tr *ngIf="products.length === 0">
+    <td colspan="3" class="empty-state">No products found. Add one on the left!</td>
+  </tr>
+</tbody>
+      </table>
+    </div>
+  </div>
+</div>
